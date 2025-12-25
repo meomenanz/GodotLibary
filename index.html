@@ -377,13 +377,6 @@
             letter-spacing: 1px;
         }
 
-        .hint-text {
-            color: var(--gray);
-            font-size: 0.9rem;
-            margin-top: 10px;
-            font-style: italic;
-        }
-
         .verify-btn {
             background: linear-gradient(45deg, var(--steam-accent), var(--accent));
             color: white;
@@ -814,8 +807,8 @@
     <!-- Таймер обновления -->
     <div class="update-timer" id="updateTimer">
         <i class="fas fa-clock"></i>
-        <span>До обновления:</span>
-        <span class="timer-days" id="timerDays">3</span>
+        <span>До обновления осталось:</span>
+        <span class="timer-days" id="timerDays">2</span>
         <span>дня</span>
     </div>
 
@@ -829,8 +822,7 @@
             <h3><i class="fas fa-key"></i> Введите код доступа</h3>
             
             <p style="color: var(--gray); margin-bottom: 20px;">
-                Для скачивания CreatorGodot требуется специальный код доступа.<br>
-                Получите код на официальных каналах поддержки.
+                Для скачивания CreatorGodot требуется специальный код доступа
             </p>
             
             <div class="code-input-container">
@@ -839,10 +831,9 @@
                     class="code-input" 
                     id="accessCode"
                     placeholder="XXXX-XXXX-XXXX"
-                    maxlength="14"
                     autocomplete="off"
+                    maxlength="14"
                 >
-                <div class="hint-text">Формат: XXXX-XXXX-XXXX</div>
             </div>
             
             <button class="verify-btn" id="verifyCode">
@@ -876,6 +867,9 @@
                     <h3>CreatorGodot - Передовая библиотека для Steam</h3>
                     <p style="font-size: 1.3rem; margin-top: 15px; color: var(--steam-accent);">
                         <strong>Выпущено:</strong> Май 2020 | <strong>Актуально до:</strong> Декабрь 2025 | <strong>Размер:</strong> 420 МБ
+                    </p>
+                    <p style="margin-top: 10px; color: var(--gray);">
+                        <i class="fas fa-star"></i> Доступна также бета-версия 2025
                     </p>
                 </div>
                 
@@ -937,7 +931,7 @@
                     
                     <div style="margin-top: 25px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px;">
                         <p style="color: var(--gray); font-size: 0.9rem; text-align: center;">
-                            <i class="fas fa-info-circle"></i> Данные актуальны на декабрь 2025 года. График показывает помесячную динамику скачиваний.
+                            <i class="fas fa-info-circle"></i> Данные актуальны на декабрь 2025 года. До обновления осталось: 2 дня
                         </p>
                     </div>
                 </div>
@@ -945,12 +939,13 @@
                 <!-- Кнопка скачивания -->
                 <button class="download-btn" id="downloadButton">
                     <i class="fas fa-download"></i>
-                    Скачать CreatorGodot 2.4.1
+                    Скачать CreatorGodot
                 </button>
                 
                 <p style="margin-top: 25px; color: var(--steam-accent); font-size: 1.1rem;">
                     <i class="fas fa-shield-alt"></i> Защищенное скачивание | 
-                    <i class="fas fa-key"></i> Требуется код доступа
+                    <i class="fas fa-key"></i> Требуется код доступа |
+                    <i class="fas fa-bolt"></i> Доступна бета-версия
                 </p>
             </section>
         </main>
@@ -963,7 +958,7 @@
                 <div class="footer-section">
                     <h3><i class="fas fa-info-circle"></i> О проекте</h3>
                     <p>CreatorGodot 2.4.1 - стабильная версия с мая 2020 года.</p>
-                    <p>Данные по скачиваниям обновлены до декабря 2025.</p>
+                    <p>Доступна бета-версия 2025 для тестирования.</p>
                 </div>
                 <div class="footer-section">
                     <h3><i class="fas fa-chart-line"></i> Статистика</h3>
@@ -975,7 +970,7 @@
                     <h3><i class="fas fa-calendar"></i> Период</h3>
                     <p>• Начало: Май 2020</p>
                     <p>• Актуально до: Декабрь 2025</p>
-                    <p>• Обновление через: 3 дня</p>
+                    <p>• Обновление через: 2 дня</p>
                 </div>
             </div>
             <div class="copyright">
@@ -1019,10 +1014,10 @@
             ]
         };
 
-        // Таймер обратного отсчета - теперь 3 дня
+        // Таймер обратного отсчета - теперь 2 дня
         function updateTimer() {
             const daysElement = document.getElementById('timerDays');
-            let days = 3; // Изменено с 4 на 3
+            let days = 2; // Изменено с 3 на 2
             
             setInterval(() => {
                 daysElement.textContent = days;
@@ -1251,9 +1246,71 @@
         const accessCode = document.getElementById('accessCode');
         const errorMessage = document.getElementById('errorMessage');
 
-        // Правильный код
-        const CORRECT_CODE = 'YXAD-7777-FREE';
-        const DOWNLOAD_URL = 'https://disk.yandex.ru/d/TICtu1yCEwY4yg';
+        // Правильные коды
+        const CORRECT_CODE_STABLE = 'YXAD-7777-FREE';
+        const CORRECT_CODE_BETA = 'BETA-FREE-2025';
+        
+        // Ссылки для скачивания
+        const DOWNLOAD_URL_STABLE = 'https://disk.yandex.ru/d/TICtu1yCEwY4yg';
+        const DOWNLOAD_URL_BETA = 'https://disk.yandex.ru/d/t0wejoWQK6sO4w';
+
+        // Функция для автоматической расстановки дефисов
+        function formatCodeInput(input) {
+            // Убираем все дефисы
+            let value = input.replace(/-/g, '');
+            
+            // Добавляем дефисы через каждые 4 символа
+            if (value.length > 4) {
+                value = value.substring(0, 4) + '-' + value.substring(4);
+            }
+            if (value.length > 9) {
+                value = value.substring(0, 9) + '-' + value.substring(9);
+            }
+            
+            // Ограничиваем длину
+            if (value.length > 14) {
+                value = value.substring(0, 14);
+            }
+            
+            return value;
+        }
+
+        // Обработчик ввода кода
+        accessCode.addEventListener('input', function(e) {
+            let value = e.target.value.toUpperCase();
+            
+            // Сохраняем позицию курсора
+            const cursorPosition = e.target.selectionStart;
+            
+            // Форматируем значение
+            value = formatCodeInput(value);
+            
+            // Устанавливаем отформатированное значение
+            e.target.value = value;
+            
+            // Восстанавливаем позицию курсора
+            let newCursorPosition = cursorPosition;
+            if (cursorPosition === 5 || cursorPosition === 10) {
+                newCursorPosition++;
+            }
+            e.target.setSelectionRange(newCursorPosition, newCursorPosition);
+            
+            errorMessage.classList.remove('show');
+        });
+
+        // Обработчик для удаления (чтобы правильно обрабатывать Backspace)
+        accessCode.addEventListener('keydown', function(e) {
+            if (e.key === 'Backspace') {
+                const cursorPosition = e.target.selectionStart;
+                const value = e.target.value;
+                
+                // Если курсор стоит после дефиса, перемещаем его перед дефисом
+                if (cursorPosition === 5 || cursorPosition === 10) {
+                    e.preventDefault();
+                    e.target.setSelectionRange(cursorPosition - 1, cursorPosition - 1);
+                }
+            }
+        });
 
         // Открыть модальное окно при нажатии на кнопку скачивания
         downloadButton.addEventListener('click', () => {
@@ -1275,31 +1332,30 @@
             }
         });
 
-        // Форматирование ввода кода
-        accessCode.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/[^A-Z0-9]/g, '');
-            
-            // Форматирование XXXX-XXXX-XXXX
-            if (value.length > 4) value = value.slice(0, 4) + '-' + value.slice(4);
-            if (value.length > 9) value = value.slice(0, 9) + '-' + value.slice(9);
-            if (value.length > 14) value = value.slice(0, 14);
-            
-            e.target.value = value.toUpperCase();
-            errorMessage.classList.remove('show');
-        });
-
         // Проверка кода
         verifyCode.addEventListener('click', () => {
-            const enteredCode = accessCode.value.trim();
+            const enteredCode = accessCode.value.trim().toUpperCase();
             
-            if (!enteredCode) {
-                showError('Введите код доступа');
+            if (!enteredCode || enteredCode.length < 14) {
+                showError('Введите полный код доступа');
                 return;
             }
             
-            if (enteredCode === CORRECT_CODE) {
+            let downloadUrl = null;
+            let versionName = '';
+            
+            // Проверяем оба ключа
+            if (enteredCode === CORRECT_CODE_STABLE) {
+                downloadUrl = DOWNLOAD_URL_STABLE;
+                versionName = 'стабильную версию';
+            } else if (enteredCode === CORRECT_CODE_BETA) {
+                downloadUrl = DOWNLOAD_URL_BETA;
+                versionName = 'бета-версию 2025';
+            }
+            
+            if (downloadUrl) {
                 // Код правильный
-                verifyCode.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Перенаправление...';
+                verifyCode.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Загружаю ${versionName}...`;
                 verifyCode.disabled = true;
                 
                 // Обновляем статистику
@@ -1310,12 +1366,12 @@
                 
                 // Перенаправление через 1.5 секунды
                 setTimeout(() => {
-                    window.open(DOWNLOAD_URL, '_blank');
+                    window.open(downloadUrl, '_blank');
                     codeModal.classList.remove('active');
                     resetForm();
                     
                     // Показать уведомление об успехе
-                    showNotification('Код принят! Начинается скачивание...');
+                    showNotification(`Код принят! Загружается ${versionName}...`);
                 }, 1500);
             } else {
                 // Неправильный код
@@ -1335,7 +1391,7 @@
                 if (errorCount >= 3) {
                     setTimeout(() => {
                         accessCode.value = '';
-                        showError('Попробуйте код: YXAD-7777-FREE');
+                        showError('Попробуйте другие коды');
                         accessCode.setAttribute('data-errors', '0');
                     }, 1000);
                 }
