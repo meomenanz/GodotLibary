@@ -268,22 +268,6 @@
             animation: pulse-gold 1.5s infinite;
         }
 
-        .soon-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(45deg, #666, #888);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: #aaa;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            margin-top: 20px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
         @keyframes pulse-gold {
             0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(243, 156, 18, 0.3); }
             50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4); }
@@ -373,6 +357,19 @@
             font-size: 1.6rem;
             margin-bottom: 20px;
             box-shadow: 0 8px 20px rgba(102, 192, 244, 0.4);
+        }
+
+        .stable-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 35px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.4);
         }
 
         /* Биткоин-стиль графика */
@@ -626,46 +623,6 @@
             animation: bounce 1.2s infinite;
         }
 
-        /* Кнопка СКОРО */
-        .coming-soon-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            background: linear-gradient(45deg, #666, #888);
-            color: #aaa;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            text-decoration: none;
-            text-transform: uppercase;
-            padding: 25px 60px;
-            border-radius: 70px;
-            margin: 40px 0 30px;
-            transition: all 0.4s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 2px solid #666;
-            cursor: not-allowed;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 2px;
-        }
-
-        .coming-soon-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-
-        .coming-soon-btn i {
-            font-size: 2.5rem;
-        }
-
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -685,14 +642,6 @@
             margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 3px;
-        }
-
-        .gamestore-subtitle {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2rem;
-            color: var(--warning);
-            margin-bottom: 50px;
-            animation: pulse-gold 2s infinite;
         }
 
         .gamestore-content {
@@ -986,7 +935,7 @@
                 gap: 15px;
             }
             
-            .download-btn, .coming-soon-btn {
+            .download-btn {
                 font-size: 1.6rem;
                 padding: 20px 40px;
             }
@@ -1002,10 +951,6 @@
             
             .gamestore-title {
                 font-size: 2.5rem;
-            }
-            
-            .gamestore-subtitle {
-                font-size: 1.5rem;
             }
             
             .gamestore-content {
@@ -1183,31 +1128,42 @@
         <div class="container">
             <header>
                 <div class="logo-container">
-                    <i class="fas fa-store logo-icon" style="color: #666;"></i>
+                    <i class="fas fa-store logo-icon" style="color: var(--steam-accent);"></i>
                 </div>
-                <h1 style="background: linear-gradient(90deg, #888, #aaa, #ccc); -webkit-background-clip: text; background-clip: text;">GameStore</h1>
+                <h1 style="background: linear-gradient(90deg, var(--steam-accent), var(--accent), #ffffff); -webkit-background-clip: text; background-clip: text;">GameStore</h1>
                 <div class="subtitle">Магазин игр и приложений</div>
-                <div class="soon-badge" id="gamestoreBadge">
-                    <i class="fas fa-clock"></i> СКОРО
-                </div>
             </header>
 
             <main>
                 <section class="gamestore-content">
-                    <h3><i class="fas fa-store"></i> GameStore</h3>
-                    <p style="font-size: 2.5rem; color: #aaa; font-weight: 700; margin-bottom: 30px;">
-                        СКОРО
-                    </p>
+                    <h2><i class="fas fa-store"></i> GameStore</h2>
                     
-                    <p style="font-size: 1.5rem; color: #888;">
-                        <i class="fas fa-cog fa-spin"></i> Идет разработка платформы...
-                    </p>
+                    <div class="version-card" style="border-left: 5px solid #2ecc71;">
+                        <span class="stable-badge">Версия 1.0.0</span>
+                        <h3>GameStore - Магазин игр на движке Godot</h3>
+                        <p style="font-size: 1.3rem; margin-top: 15px; color: var(--steam-accent);">
+                            <strong>Версия:</strong> 1.0.0 | <strong>Статус:</strong> Стабильная | <strong>Размер:</strong> 380 МБ
+                        </p>
+                        <p style="margin-top: 10px; color: #2ecc71; font-weight: 600;">
+                            <i class="fas fa-check-circle"></i> Стабильная версия
+                        </p>
+                    </div>
                     
-                    <div style="margin: 40px 0; padding: 30px; background: rgba(0,0,0,0.3); border-radius: 15px; border: 2px solid rgba(136, 136, 136, 0.3);">
-                        <h4 style="font-family: 'Orbitron'; color: #888; margin-bottom: 20px;">
-                            <i class="fas fa-info-circle"></i> Что будет в GameStore?
-                        </h4>
+                    <!-- Описание GameStore -->
+                    <div class="analytics-section" style="border: 2px solid rgba(46, 204, 113, 0.2);">
+                        <div class="analytics-header">
+                            <div class="analytics-title">
+                                <i class="fas fa-info-circle"></i> О GameStore
+                            </div>
+                        </div>
                         
+                        <p style="text-align: left; line-height: 1.8; color: var(--gray); margin-bottom: 30px;">
+                            GameStore - это платформа для дистрибуции игр и приложений, созданных на движке Godot. 
+                            Предоставляет удобный магазин для разработчиков и игроков. Стабильная версия 1.0.0 полностью 
+                            готова к использованию и не требует ввода кодов доступа.
+                        </p>
+                        
+                        <!-- Функции -->
                         <div class="features-list">
                             <div class="feature-card">
                                 <i class="fas fa-gamepad"></i>
@@ -1230,18 +1186,43 @@
                                 <p>Форум и обмен опытом</p>
                             </div>
                         </div>
+                        
+                        <!-- Преимущества -->
+                        <div style="margin-top: 40px; padding: 20px; background: rgba(46, 204, 113, 0.1); border-radius: 15px; border: 1px solid rgba(46, 204, 113, 0.3);">
+                            <h4 style="font-family: 'Orbitron'; color: #2ecc71; margin-bottom: 20px;">
+                                <i class="fas fa-star"></i> Преимущества
+                            </h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                                <div style="text-align: left;">
+                                    <p style="color: #2ecc71; font-weight: 600;">✓ Простая установка</p>
+                                    <p style="color: var(--gray); font-size: 0.9rem;">Не требует специальных знаний</p>
+                                </div>
+                                <div style="text-align: left;">
+                                    <p style="color: #2ecc71; font-weight: 600;">✓ Безопасность</p>
+                                    <p style="color: var(--gray); font-size: 0.9rem;">Проверенные файлы</p>
+                                </div>
+                                <div style="text-align: left;">
+                                    <p style="color: #2ecc71; font-weight: 600;">✓ Быстрая загрузка</p>
+                                    <p style="color: var(--gray); font-size: 0.9rem;">Высокая скорость скачивания</p>
+                                </div>
+                                <div style="text-align: left;">
+                                    <p style="color: #2ecc71; font-weight: 600;">✓ Поддержка</p>
+                                    <p style="color: var(--gray); font-size: 0.9rem;">Активное сообщество</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     
-                    <!-- Кнопка СКОРО -->
-                    <button class="coming-soon-btn" id="gamestoreButton">
-                        <i class="fas fa-clock"></i>
-                        СКОРО
+                    <!-- Кнопка скачать GameStore -->
+                    <button class="download-btn" id="gamestoreDownloadButton">
+                        <i class="fas fa-download"></i>
+                        Скачать GameStore
                     </button>
                     
-                    <p style="margin-top: 25px; color: #888; font-size: 1.1rem;">
-                        <i class="fas fa-cog"></i> В разработке | 
-                        <i class="fas fa-clock"></i> Скоро будет доступно |
-                        <i class="fas fa-users"></i> Для сообщества
+                    <p style="margin-top: 25px; color: var(--steam-accent); font-size: 1.1rem;">
+                        <i class="fas fa-check-circle"></i> Стабильная версия | 
+                        <i class="fas fa-shield-alt"></i> Безопасно |
+                        <i class="fas fa-rocket"></i> Быстрая загрузка
                     </p>
                 </section>
             </main>
@@ -1255,7 +1236,7 @@
                 <div class="footer-section">
                     <h3><i class="fas fa-info-circle"></i> О проекте</h3>
                     <p>CreatorGodot - бета-версия доступна.</p>
-                    <p>GameStore - скоро будет доступен.</p>
+                    <p>GameStore - стабильная версия 1.0.0.</p>
                 </div>
                 <div class="footer-section">
                     <h3><i class="fas fa-chart-line"></i> Статистика</h3>
@@ -1538,6 +1519,7 @@
         // Ссылки для скачивания
         const DOWNLOAD_URL_STABLE = 'https://disk.yandex.ru/d/TICtu1yCEwY4yg';
         const DOWNLOAD_URL_BETA = 'https://disk.yandex.ru/d/t0wejoWQK6sO4w';
+        const DOWNLOAD_URL_GAMESTORE = 'https://disk.yandex.ru/d/3iYr8Ql6vDHA5Q';
 
         // Функция для автоматической расстановки дефисов
         function formatCodeInput(input) {
@@ -1616,9 +1598,9 @@
                 updateTimer.style.background = 'linear-gradient(135deg, rgba(0, 204, 255, 0.9), rgba(102, 192, 244, 0.9))';
                 updateTimer.style.boxShadow = '0 8px 25px rgba(0, 204, 255, 0.3)';
             } else {
-                updateTimer.innerHTML = '<i class="fas fa-clock"></i><span>СКОРО</span>';
-                updateTimer.style.background = 'linear-gradient(135deg, rgba(136, 136, 136, 0.9), rgba(170, 170, 170, 0.9))';
-                updateTimer.style.boxShadow = '0 8px 25px rgba(136, 136, 136, 0.3)';
+                updateTimer.innerHTML = '<i class="fas fa-check-circle"></i><span>СТАБИЛЬНАЯ ВЕРСИЯ</span>';
+                updateTimer.style.background = 'linear-gradient(135deg, rgba(46, 204, 113, 0.9), rgba(39, 174, 96, 0.9))';
+                updateTimer.style.boxShadow = '0 8px 25px rgba(46, 204, 113, 0.3)';
             }
         }
 
@@ -1657,11 +1639,43 @@
             updateTimerForTab('creatorgodot');
         }
 
-        // Открыть модальное окно при нажатии на кнопку скачивания
+        // Открыть модальное окно при нажатии на кнопку скачивания CreatorGodot
         if (downloadButton) {
             downloadButton.addEventListener('click', () => {
                 codeModal.classList.add('active');
                 if (accessCode) accessCode.focus();
+            });
+        }
+
+        // Скачивание GameStore (без модального окна)
+        const gamestoreDownloadButton = document.getElementById('gamestoreDownloadButton');
+        if (gamestoreDownloadButton) {
+            gamestoreDownloadButton.addEventListener('click', () => {
+                // Анимация нажатия
+                gamestoreDownloadButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Загружается...';
+                gamestoreDownloadButton.disabled = true;
+                
+                // Обновляем статистику
+                const totalElement = document.querySelector('.total-downloads');
+                if (totalElement) {
+                    const currentText = totalElement.textContent;
+                    const currentTotal = parseInt(currentText.match(/\d+/g).join(''));
+                    totalElement.innerHTML = `<i class="fas fa-download"></i> Всего: ${(currentTotal + 1).toLocaleString()}`;
+                }
+                
+                // Перенаправление через 1 секунду
+                setTimeout(() => {
+                    window.open(DOWNLOAD_URL_GAMESTORE, '_blank');
+                    
+                    // Восстанавливаем кнопку
+                    setTimeout(() => {
+                        gamestoreDownloadButton.innerHTML = '<i class="fas fa-download"></i> Скачать GameStore';
+                        gamestoreDownloadButton.disabled = false;
+                    }, 1000);
+                    
+                    // Показать уведомление об успехе
+                    showNotification('GameStore загружается!');
+                }, 1000);
             });
         }
 
@@ -1811,27 +1825,6 @@
                 setTimeout(() => notification.remove(), 500);
             }, 3000);
         }
-
-        // Обработка кнопки "СКОРО" в GameStore
-        document.addEventListener('DOMContentLoaded', function() {
-            const gamestoreButton = document.getElementById('gamestoreButton');
-            
-            if (gamestoreButton) {
-                gamestoreButton.addEventListener('click', () => {
-                    // Анимация нажатия
-                    gamestoreButton.style.transform = 'scale(0.95)';
-                    gamestoreButton.style.boxShadow = '0 10px 20px rgba(0, 0, 0, 0.2)';
-                    
-                    setTimeout(() => {
-                        gamestoreButton.style.transform = '';
-                        gamestoreButton.style.boxShadow = '';
-                    }, 200);
-                    
-                    // Показать уведомление
-                    showNotification('GameStore скоро будет доступен! Идет разработка.');
-                });
-            }
-        });
 
         // Инициализация
         document.addEventListener('DOMContentLoaded', function() {
